@@ -3,4 +3,4 @@ from prompts.explain_prompt import explain_prompt
 
 llm = get_llm()
 
-explanation_chain = explain_prompt | llm
+explain_chain = explain_prompt | llm

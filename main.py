@@ -1,6 +1,6 @@
-# ==============================
+
 # LOAD ENV VARIABLES
-# ==============================
+
 from dotenv import load_dotenv
 import os
 import sys
@@ -9,20 +9,16 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 
-print("DEBUG: GROQ KEY =", os.getenv("GROQ_API_KEY"))  # ✅ debug
-
-# ==============================
 # IMPORT CHAINS
-# ==============================
+
 from chains.llm import get_llm
 from chains.extraction_chain import extraction_chain
 from chains.matching_chain import matching_chain
 from chains.scoring_chain import scoring_chain
 from chains.explain_chain import explain_chain
 
-# ==============================
 # SAMPLE DATA
-# ==============================
+
 
 job_description = """
 We are looking for a Data Scientist with:
@@ -68,14 +64,14 @@ def run_pipeline(resume, name):
     # Step 2: Matching
     matched = matching_chain.invoke({
         "resume_data": extracted,
-        "job_description": job_description
+        "job_desc": job_description
     })
     print("\n[MATCHED]")
     print(matched)
 
     # Step 3: Scoring
     score = scoring_chain.invoke({
-        "match_result": matched
+        "match_data": matched
     })
     print("\n[SCORE]")
     print(score)
@@ -83,7 +79,7 @@ def run_pipeline(resume, name):
     # Step 4: Explanation
     explanation = explain_chain.invoke({
         "score": score,
-        "match_result": matched
+        "match_data": matched  
     })
     print("\n[EXPLANATION]")
     print(explanation)
