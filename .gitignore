@@ -1,4 +1,4 @@
 .env
 myvenv/
-chains/__pycache
-prompts/__pycache
+chains/__pycache__
+prompts/__pycache__
